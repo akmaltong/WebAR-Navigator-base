@@ -7,8 +7,8 @@ import { UIManager } from './ui/UIManager';
 import { bezierSpline } from './utils/BezierSpline';
 
 // ── Constants ────────────────────────────────────────────────────────────────
-const HIT_MIN_DIST = 0.45; // м — фильтр «на себя»
-const FLOOR_MIN_Y = 0.45; // sin нормали → горизонтальная поверхность
+const HIT_MIN_DIST = 0.15; // м — фильтр «на себя»
+const FLOOR_MIN_Y = 0.25; // sin нормали → горизонтальная поверхность
 
 // Цвета маркеров
 const COLOR_START = 0x00ff88;
@@ -100,7 +100,11 @@ class ARNavigator {
         if (!this.hitTestSource || !this.refSpace) return;
 
         const hits = frame.getHitTestResults(this.hitTestSource);
-        if (!hits.length) { this.ar.reticle.visible = false; return; }
+        if (!hits.length) {
+            this.ar.reticle.visible = false;
+            this.fp.clear();
+            return;
+        }
 
         const pose = hits[0].getPose(this.refSpace);
         if (!pose) return;
@@ -113,6 +117,7 @@ class ARNavigator {
         const camPos = new THREE.Vector3().setFromMatrixPosition(this.ar.camera.matrixWorld);
         if (pos.distanceTo(camPos) < HIT_MIN_DIST) {
             this.ar.reticle.visible = false;
+            this.fp.clear();
             return;
         }
 
@@ -124,9 +129,12 @@ class ARNavigator {
         const quat = new THREE.Quaternion().setFromUnitVectors(up, normal);
         this.ar.reticle.setRotationFromQuaternion(quat);
 
-        // Feature-points: на полу — горизонтальный круг, на стене — вертикальный
-        const isWall = normal.y < FLOOR_MIN_Y;
-        this.fp.addPoint(pos, isWall, time);
+        // Feature-points: обновляем положение белого кольца точек
+        this.fp.updatePose(pos, quat, time);
+
+        // Пульсация зеленого прицела
+        const pulse = 1.0 + 0.08 * Math.sin(time / 150);
+        this.ar.reticle.scale.setScalar(pulse);
 
         this.pd.update(pos, normal);
     }

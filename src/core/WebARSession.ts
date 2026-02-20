@@ -6,7 +6,7 @@ export class WebARSession {
     readonly renderer: THREE.WebGLRenderer;
     readonly scene: THREE.Scene;
     readonly camera: THREE.PerspectiveCamera;
-    readonly reticle: THREE.Mesh;
+    readonly reticle: THREE.Group;
 
     isARActive = false;
     private _arButtonEl: HTMLElement | null = null;
@@ -62,7 +62,9 @@ export class WebARSession {
         this.scene.add(hemi);
     }
 
-    private _createReticle(): THREE.Mesh {
+    private _createReticle(): THREE.Group {
+        const group = new THREE.Group();
+
         const geo = new THREE.RingGeometry(0.022, 0.038, 32);
         geo.rotateX(-Math.PI / 2);
         const mat = new THREE.MeshBasicMaterial({
@@ -71,16 +73,28 @@ export class WebARSession {
             opacity: 0.85,
             side: THREE.DoubleSide
         });
-        const mesh = new THREE.Mesh(geo, mat);
-        mesh.visible = false;
+        const ring = new THREE.Mesh(geo, mat);
+        group.add(ring);
+
         // Inner dot
         const dotGeo = new THREE.CircleGeometry(0.008, 16);
         dotGeo.rotateX(-Math.PI / 2);
         const dotMat = new THREE.MeshBasicMaterial({ color: 0x00ff88, side: THREE.DoubleSide });
         const dot = new THREE.Mesh(dotGeo, dotMat);
         dot.position.y = 0.001;
-        mesh.add(dot);
-        return mesh;
+        group.add(dot);
+
+        // Gizmo / normal indicator (Z/Y axis locally)
+        const lineGeo = new THREE.BufferGeometry().setFromPoints([
+            new THREE.Vector3(0, 0, 0),
+            new THREE.Vector3(0, 0.10, 0)
+        ]);
+        const lineMat = new THREE.LineBasicMaterial({ color: 0x00ff88, linewidth: 3 });
+        const line = new THREE.Line(lineGeo, lineMat);
+        group.add(line);
+
+        group.visible = false;
+        return group;
     }
 
     async initializeAR(): Promise<boolean> {

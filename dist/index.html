@@ -233,19 +233,16 @@
 
     /* Bottom panel */
     #ui-overlay {
-      position: absolute;
-      inset: 0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
-      pointer-events: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
       padding: 14px;
-      padding-bottom: calc(34px + env(safe-area-inset-bottom, 0px));
+      padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
     }
 
     .panel {
-      pointer-events: auto;
       background: var(--glass);
       border: 1px solid var(--border);
       border-radius: 22px;
@@ -479,6 +476,7 @@
       color: rgba(255, 255, 255, .4);
     }
   </style>
+  <script type="module" crossorigin src="/assets/index-CRY96zJr.js"></script>
 </head>
 
 <body>
@@ -533,8 +531,7 @@
       <div id="status"></div>
     </div>
   </div>
-
-  <script type="module" src="/src/main.ts"></script>
+
 </body>
 
 </html>
