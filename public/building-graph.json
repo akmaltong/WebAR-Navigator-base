@@ -1,0 +1,188 @@
+{
+    "metadata": {
+        "building": "FESTU Main Building",
+        "floor": 4,
+        "created": "2026-02-20",
+        "description": "Граф навигации 4-го этажа главного корпуса ФЭСТУ"
+    },
+    "nodes": [
+        {
+            "id": "entrance-1",
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "type": "entrance",
+            "label": "Вход"
+        },
+        {
+            "id": "hall-1",
+            "x": 2,
+            "y": 0,
+            "z": 0,
+            "type": "hallway",
+            "label": "Холл"
+        },
+        {
+            "id": "corridor-a-start",
+            "x": 5,
+            "y": 0,
+            "z": 0,
+            "type": "corridor",
+            "label": "Коридор А"
+        },
+        {
+            "id": "room-422",
+            "x": 5,
+            "y": 0,
+            "z": 3,
+            "type": "room",
+            "label": "422"
+        },
+        {
+            "id": "corridor-a-mid",
+            "x": 8,
+            "y": 0,
+            "z": 0,
+            "type": "corridor",
+            "label": "Коридор А сер."
+        },
+        {
+            "id": "room-425",
+            "x": 8,
+            "y": 0,
+            "z": 3,
+            "type": "room",
+            "label": "425"
+        },
+        {
+            "id": "corridor-a-end",
+            "x": 11,
+            "y": 0,
+            "z": 0,
+            "type": "corridor",
+            "label": "Коридор А кон."
+        },
+        {
+            "id": "room-430",
+            "x": 11,
+            "y": 0,
+            "z": 3,
+            "type": "room",
+            "label": "430"
+        },
+        {
+            "id": "corridor-b-start",
+            "x": 11,
+            "y": 0,
+            "z": -3,
+            "type": "corridor",
+            "label": "Коридор Б"
+        },
+        {
+            "id": "room-435",
+            "x": 11,
+            "y": 0,
+            "z": -6,
+            "type": "room",
+            "label": "435"
+        },
+        {
+            "id": "corridor-b-mid",
+            "x": 14,
+            "y": 0,
+            "z": -6,
+            "type": "corridor",
+            "label": "Коридор Б сер."
+        },
+        {
+            "id": "room-437",
+            "x": 14,
+            "y": 0,
+            "z": -3,
+            "type": "room",
+            "label": "437"
+        },
+        {
+            "id": "room-440",
+            "x": 17,
+            "y": 0,
+            "z": -6,
+            "type": "room",
+            "label": "440"
+        }
+    ],
+    "edges": [
+        {
+            "from": "entrance-1",
+            "to": "hall-1",
+            "cost": 2.0,
+            "bidirectional": true
+        },
+        {
+            "from": "hall-1",
+            "to": "corridor-a-start",
+            "cost": 3.0,
+            "bidirectional": true
+        },
+        {
+            "from": "corridor-a-start",
+            "to": "room-422",
+            "cost": 3.0,
+            "bidirectional": true
+        },
+        {
+            "from": "corridor-a-start",
+            "to": "corridor-a-mid",
+            "cost": 3.0,
+            "bidirectional": true
+        },
+        {
+            "from": "corridor-a-mid",
+            "to": "room-425",
+            "cost": 3.0,
+            "bidirectional": true
+        },
+        {
+            "from": "corridor-a-mid",
+            "to": "corridor-a-end",
+            "cost": 3.0,
+            "bidirectional": true
+        },
+        {
+            "from": "corridor-a-end",
+            "to": "room-430",
+            "cost": 3.0,
+            "bidirectional": true
+        },
+        {
+            "from": "corridor-a-end",
+            "to": "corridor-b-start",
+            "cost": 3.0,
+            "bidirectional": true
+        },
+        {
+            "from": "corridor-b-start",
+            "to": "room-435",
+            "cost": 3.0,
+            "bidirectional": true
+        },
+        {
+            "from": "corridor-b-start",
+            "to": "corridor-b-mid",
+            "cost": 3.0,
+            "bidirectional": true
+        },
+        {
+            "from": "corridor-b-mid",
+            "to": "room-437",
+            "cost": 3.0,
+            "bidirectional": true
+        },
+        {
+            "from": "corridor-b-mid",
+            "to": "room-440",
+            "cost": 3.0,
+            "bidirectional": true
+        }
+    ]
+}
