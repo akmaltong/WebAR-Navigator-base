@@ -1,0 +1,22 @@
+{
+    "name": "webar-navigator",
+    "version": "1.0.0",
+    "description": "WebAR indoor navigation system for FESTU",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "three": "^0.160.1",
+        "yuka": "^0.7.8"
+    },
+    "devDependencies": {
+        "@types/three": "^0.160.0",
+        "@types/webxr": "^0.5.15",
+        "@vitejs/plugin-basic-ssl": "^1.2.0",
+        "typescript": "^5.3.3",
+        "vite": "^5.0.11"
+    }
+}
