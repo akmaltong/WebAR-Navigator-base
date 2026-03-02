@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.local
+.vite/
+nul
+.claude/
+*.rar
+MosFinForun_webapp/
